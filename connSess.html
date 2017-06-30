@@ -1,0 +1,51 @@
+<?php
+
+    /*-----
+        function: connSess: string string -> connection
+        purpose: expects a mySQL username and password,
+            and has the side-effect of trying to connect to
+            the database with the given username and password;
+            returns the resulting connection object if
+            successful, and returns false otherwise
+            (doesn't it actually exit rather catastrophically
+            in unsuccessful-connection case?!
+            SO, this version ALSO destroys the current session
+            for good measure!)
+
+        uses: validationFooter.html
+    -----*/
+
+    function connSess($usr, $pwd)
+    {
+        // set up db connection string
+
+        $db_conn_str =
+            "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
+                                       (HOST = localhost)
+                                       (PORT = 3306)))";
+
+        // let's try to log on using this string!
+
+        $connctn = oci_connect($usr, $pwd, $db_conn_str);
+
+        // CAN I complain and exit from HERE if fails?
+
+        if (! $connctn)
+        {
+        ?>
+            <p> Could not log into MySQL, sorry. </p>
+
+            <?php
+            require_once("validationFooter.html");
+            ?>
+</body>
+</html>
+            <?php
+            session_destroy();
+            exit;
+        }
+
+        return $connctn;
+    }
+?>
+
