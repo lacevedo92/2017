@@ -14,8 +14,9 @@
     <body>
         <?php makeLayout(); ?>
         <div id="body">
-        <form action="" method="post">
-            <label> Label </label> <input type="text" />
+        <form action="index.php" method="post" class="fluid">
+            <label> Label </label> <input type="text" id="thing"/>
+            <input type="submit" value="submit"/> 
         </form>
         
 
