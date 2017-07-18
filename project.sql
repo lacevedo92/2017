@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
 Services window connect database before we can run sql
+ CASCADE CONSTRAINTS
  */
 /**
  * Author:  lilace
  * Created: Jun 29, 2017
  */
-DROP TABLE admin CASCADE CONSTRAINTS;
+DROP TABLE IF EXISTS admin;
 
 CREATE TABLE admin
 (
@@ -18,12 +19,13 @@ CREATE TABLE admin
     emailAddy   VARCHAR(255)
 );
 
-DROP TABLE users CASCADE CONSTRAINTS;
+DROP TABLE users;
 
 CREATE TABLE users
 (
     userID      INT(25) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     uname       VARCHAR(65) NOT NULL,
     pwd         VARCHAR(32) NOT NULL,
-    emailAddy   VARCHAR(255) NOT NULL
+    emailAddy   VARCHAR(255) NOT NULL,
+    dateReg     DATE NOT NULL
 );

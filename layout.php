@@ -17,9 +17,11 @@ function makeLayout()
        </div>
        <div id="topnav-right">
 <?php
-    if(array_key_exists('loggedIn', $_SESSION) && $_SESSION['loggedIn']==1)
+    //if(array_key_exists('loggedIn', $_SESSION) && $_SESSION['loggedIn']==1)
+    if(array_key_exists("login_user", $_SESSION))
     {
 ?>
+    <a class="topnav-icons fa fa-hourglass-half" id="timesheet"> </a>
     <a class="topnav-icons fa fa-leaf" href="myForm.php"></a>
     <a class="topnav-icons fa fa-cloud" id="profile"  
        title="profileDropdown" onclick="dropdown()">

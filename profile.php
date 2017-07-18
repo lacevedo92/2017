@@ -20,9 +20,12 @@
  */
 
     makeLayout();
+    $uname=$_SESSION["login_user"];
     ?>
-<div id="body">        
-<h1> Your Name </h1>
+<div id="body">   
+    <div id="content">
+<h1> Your Name: <?php echo $uname; ?> </h1>
+
 <p> Your details </p>
 <p> Member since </p>
 <p> <a href="logout.php"> Logout </a> </p>
@@ -31,6 +34,7 @@
 <?php
 //}
 ?>
+    </div>
 </div>
     </body>
 </html>

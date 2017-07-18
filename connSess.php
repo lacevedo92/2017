@@ -3,9 +3,9 @@
 # using http://www.tutorialspoint.com/php/php_mysql_login.htm
 # and referencing http://users.humboldt.edu/smtuttle/s17cs328/328hw07/hsu_conn_sess_php.html
 # tutorial calling this base.php
-    include("config.php");
+    require_once 'config.php';
     session_start();
-    
+    $error="";    
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         //uname and pwd sent from form
@@ -15,8 +15,8 @@
            
         $sql = "SELECT userID FROM users WHERE uname='$uname' and pwd='$pwdSecure'";
         $result = mysqli_query($db, $sql);
-       // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-       // $active = $row['uname'];
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $active = $row['active'];
         
         $count = mysqli_num_rows($result);
         
@@ -25,7 +25,7 @@
         {
             $_SESSION['login_user'] = $uname;
             
-            header("location: presentation.php");
+            header("location: index.php");
         }else {
             $error = "Invalid credentials";
         }
